@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday 🎂</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Patrick+Hand&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(135deg, #fff9e6, #ffe6f2, #ffe6f2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .page {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    #cake-page { display: flex; }
+
+    /* Cake */
+    .cake {
+      width: 200px;
+      height: 120px;
+      background: #ffd1dc;
+      border-radius: 0 0 20px 20px;
+      position: relative;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      overflow: visible;
+    }
+    .cake::before {
+      content: "";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: repeating-linear-gradient(
+        -45deg,
+        #fff 0px,
+        #fff 10px,
+        #ffd1d9 10px,
+        #ffd1d9 20px
+      );
+      border-radius: 20px 20px 0 0;
+    }
+    .candle {
+      width: 20px;
+      height: 60px;
+      background: repeating-linear-gradient(
+        90deg,
+        #fff,
+        #fff 5px,
+        #ffd966 5px,
+        #ffd966 10px
+      );
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 4px;
+      z-index: 5;
+    }
+    .flame {
+      width: 20px;
+      height: 30px;
+      background: radial-gradient(circle at 30% 30%, #fff176, #ffb84d 70%);
+      border-radius: 50%;
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: flicker 0.2s infinite alternate;
+      box-shadow: 0 0 15px 5px rgba(255, 230, 0, 0.7);
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); opacity: 1; }
+      to { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: #ff99cc;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Envelope */
+    .envelope {
+      width: 240px;
+      height: 160px;
+      background: linear-gradient(135deg, #fff0f6, #ffe6f2, #fff9f9);
+      border: 3px solid #ffb6e6;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 120px solid transparent;
+      border-right: 120px solid transparent;
+      border-bottom: 80px solid #ffcce6;
+    }
+    .ribbon {
+      width: 240px;
+      height: 20px;
+      background: #ff99cc;
+      position: absolute;
+      top: 70px;
+      left: 0;
+    }
+    .ribbon::after {
+      content: "🎀";
+      font-size: 28px;
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Open text */
+    .open-text {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      font-weight: bold;
+      color: #ff6699;
+      margin-bottom: 20px;
+    }
+
+    /* Letter */
+    .letter-content {
+      background: #fff0f6;
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 90%;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease-in;
+      border: 3px solid #ffb6e6;
+      position: relative;
+    }
+    .letter-content::before {
+      content: "🎀";
+      font-size: 36px;
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #ff99cc;
+    }
+    .letter-content img {
+      max-width: 250px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .letter-content h3 {
+      color: #ff6699;
+      font-family: 'Dancing Script', cursive;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .letter-content p {
+      font-family: 'Patrick Hand', cursive, sans-serif;
+      font-size: 20px;
+      color: #444;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Custom Music Player */
+    .music-player {
+      margin-top: 20px;
+      background: #ffe6f2;
+      padding: 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .play-btn {
+      background: #ff99cc;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .track-info {
+      flex: 1;
+      text-align: left;
+    }
+    .track-info span {
+      font-size: 16px;
+      color: #ff6699;
+      font-weight: bold;
+    }
+    .progress {
+      width: 100%;
+      height: 6px;
+      background: #fff;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+    .progress-bar {
+      height: 6px;
+      width: 0%;
+      background: #ffb6e6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Cake Page -->
+  <div id="cake-page" class="page">
+    <div class="cake">
+      <div class="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+    </div>
+    <h2>Blow the candle! 🎂</h2>
+    <button id="blowBtn">Or Click to Blow</button>
+  </div>
+
+  <!-- Envelope Page -->
+  <div id="envelope-page" class="page">
+    <div class="open-text">Open your surprise 💌</div>
+    <div class="envelope" id="envelope">
+      <div class="ribbon"></div>
+    </div>
+  </div>
+
+  <!-- Letter Page -->
+  <div id="letter-page" class="page">
+    <div class="letter-content">
+      <img src="polly.jpg" alt="Us">
+      <h3>Happy Birthday! 🎉</h3>
+      <p>That’s up on to you 💖</p>
+    </div>
+    <!-- Custom Music Player -->
+    <div class="music-player">
+      <button class="play-btn" id="playBtn">▶</button>
+      <div class="track-info">
+        <span>You’ll Be in My Heart</span>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+    </div>
+    <audio id="bg-music" src="youllbeinmyheart.mp3"></audio>
+  </div>
+
+  <script>
+    const blowBtn = document.getElementById("blowBtn");
+    const flame = document.getElementById("flame");
+    const cakePage = document.getElementById("cake-page");
+    const envelopePage = document.getElementById("envelope-page");
+    const envelope = document.getElementById("envelope");
+    const letterPage = document.getElementById("letter-page");
+    const music = document.getElementById("bg-music");
+    const playBtn = document.getElementById("playBtn");
+    const progressBar = document.getElementById("progressBar");
+
+    function blowCandle() {
+      flame.style.display = "none";
+      setTimeout(() => {
+        cakePage.style.display = "none";
+        envelopePage.style.display = "flex";
+      }, 1000);
+    }
+
+    blowBtn.addEventListener("click", blowCandle);
+
+    envelope.addEventListener("click", () => {
+      envelopePage.style.display = "none";
+      letterPage.style.display = "flex";
+      music.play();
+      playBtn.textContent = "⏸";
+    });
+
+    // Custom music controls
+    playBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        playBtn.textContent = "⏸";
+      } else {
+        music.pause();
+        playBtn.textContent = "▶";
+      }
+    });
+
+    music.addEventListener("timeupdate", () => {
+      const progress = (music.currentTime / music.duration) * 100;
+      progressBar.style.width = progress + "%";
+    });
+
+    // Mic blowing detection
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const mic = audioContext.createMediaStreamSource(stream);
+        const analyser = audioContext.createAnalyser();
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+        mic.connect(analyser);
+
+        function detectBlow() {
+          analyser.getByteFrequencyData(dataArray);
+          let volume = dataArray.reduce((a, b) => a + b, 0) / dataArray.length;
+          if (volume > 50) blowCandle();
+          requestAnimationFrame(detectBlow);
+        }
+        detectBlow();
+      })
+      .catch(err => console.error("Mic error:", err));
+  </script>
+</body>
+</html>
